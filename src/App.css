@@ -1,38 +1,244 @@
-.App {
-  text-align: center;
+:root {
+  --income: #32956c;
+  --expence: #c6535e;
+  --insetshadow: inset -2px -2px 3px 1px #202b46, inset 2px 2px 5px 4px #090d15;
+  --sminsetshadow: inset -2px -2px 2px 0px #202b46, inset 2px 2px 3px 2px #090d15;
+}
+body {
+  background: #131825;
+  min-height: 300vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
+  color: #dee5f8;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  width: 50%;
+  min-width: 500px;
+  margin: 0 auto;
+  padding: 0 1em;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.container > * {
+  margin-bottom: 1em;
+}
+
+h2 {
+  padding-bottom: 0.5em;
+}
+
+h2::after{
+  content: "";
+  width: 100%;
+  height: 7px;
+  border-radius: 20px;
+  display: block;
+  margin-top: .5em;
+  box-shadow: var(--insetshadow);
+}
+
+h4 {
+  margin: 0.2em 0;
+}
+
+.title {
+  align-self: center;
+}
+
+.balance {
+  font-size: 2em;
+  align-self: flex-start;
+}
+
+.balance span {
+  text-shadow: 0px 0px 1px black;
+}
+
+.section1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 5px;
+  padding: 1.2em 0.5em;
+  box-shadow: 8px 8px 6px 7px #0e131f, -4px -4px 3px 2px #202b46;
+}
+
+.income,
+.expence {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  font-size: 1.5em;
 }
 
-.App-link {
-  color: #61dafb;
+.income {
+  border-right: 2px solid #aaa;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.income div {
+  font-size: 1.2em;
+  text-shadow: 0px 0px 1px var(--income);
+  color: var(--income);
+}
+
+.expence div {
+  font-size: 1.2em;
+  text-shadow: 0px 0px 1px var(--expence);
+  color: var(--expence);
+}
+
+.list > * {
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+  box-shadow: 5px 5px 5px 4px #0e131f, -2px -2px 3px 2px #202b46;
+  overflow: hidden;
+
+}
+
+.list .wrap {
+  padding: 1em 0.5em;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.list .detail-name {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.list .income-detail {
+  border-left: 5px solid var(--income);
+}
+
+.list .expence-detail {
+  border-left: 5px solid var(--expence);
+}
+
+.list .detail-amount {
+  font-size: 1.5em;
+}
+
+.list .income-detail .detail-amount {
+  color: var(--income);
+}
+
+.list .expence-detail .detail-amount {
+  color: var(--expence);
+}
+
+.list .operation{
+  display: flex;
+  padding-top: .2em;
+  padding-bottom: .2em;
+  margin-right: -70px;
+  opacity: 0;
+  width: 15%;
+  transition: all 0.5s ease;
+}
+
+.list .operation .btn-wrap {
+  width: 100%;
+  align-content: stretch;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-right: .2em;
+}
+
+.list .operation::before{
+  content: "";
+  border-radius: 5px;
+  display: block;
+  height: 100%;
+  width: 5px;
+  margin-right: .2em;
+  box-shadow: var(--insetshadow);
+}
+
+.list .operation .btn-wrap button {
+  height: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--expence);
+}
+.list .operation .btn-wrap button:nth-child(1) {
+  color: var(--income);
+}
+.list .operation .btn-wrap button:active {
+  box-shadow: var(--sminsetshadow);
+}
+
+.list > *:hover > .operation {
+  margin-right: 0px;
+  opacity: 1;
+}
+
+.form-group {
+  margin-bottom: 1em;
+}
+
+.form-group label {
+  display: inline-block;
+  margin-bottom: 0.2em;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.form-group input {
+  display: inline-block;
+  width: 100%;
+  background: transparent;
+  box-shadow: var(--insetshadow);
+  border: none;
+  padding: 1em;
+}
+
+.form-group span {
+  display: inline-block;
+  width: 100%;
+  margin-top: 0.5em;
+  opacity: 0.5;
+  font-size: 1em;
+}
+.form-group span.error {
+  color: var(--expence);
+  opacity: 1;
+  text-shadow: 0px 0px 2px var(--expence);
+}
+
+.form-btn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-btn button {
+  width: 49%;
+  padding: 0.5em;
+  font-size: 1.1em;
+  border: none;
+  background: transparent;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 3px 3px 5px 5px #0e131f, -2px -2px 3px 2px #202b46;
+}
+
+.form-btn button:active {
+  box-shadow: var(--insetshadow);
+}
+
+.form-btn button:nth-child(1) {
+  text-shadow: 0px 0px 3px var(--income);
+  color: var(--income);
+}
+.form-btn button:nth-child(2) {
+  text-shadow: 0px 0px 3px var(--expence);
+  color: var(--expence);
 }
